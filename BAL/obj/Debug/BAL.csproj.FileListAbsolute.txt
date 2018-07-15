@@ -1,0 +1,9 @@
+D:\Web\2C2P\API\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+D:\Web\2C2P\API\BAL\bin\Debug\BAL.dll
+D:\Web\2C2P\API\BAL\bin\Debug\BAL.pdb
+D:\Web\2C2P\API\BAL\bin\Debug\DAL.dll
+D:\Web\2C2P\API\BAL\bin\Debug\DTO.dll
+D:\Web\2C2P\API\BAL\bin\Debug\DAL.pdb
+D:\Web\2C2P\API\BAL\bin\Debug\DTO.pdb
+D:\Web\2C2P\API\BAL\obj\Debug\BAL.dll
+D:\Web\2C2P\API\BAL\obj\Debug\BAL.pdb

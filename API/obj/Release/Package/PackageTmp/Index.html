@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-combined.min.css" rel="stylesheet" />
+
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/jquery.validator.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+
+    <script src="scripts/wloading.js"></script>
+
+    <script>
+        var paymentAPI = 'api/PaymentAPI';
+        $(document).ready(function () {
+            wLoading.showPleaseWait();
+            IntialData();
+   
+
+            setTimeout(function () { wLoading.hidePleaseWait() }, 1000);
+
+         
+    
+    });
+
+
+    function IntialData()
+        {
+
+        $('.myform').on('submit', function (e) {
+            if (e.isDefaultPrevented()) {
+                $(".alert").fadeIn();
+                return false;
+                // handle the invalid form...
+            } else {
+                Submit();
+
+                return false;
+            }
+
+
+        })
+
+     
+
+
+
+        $('.btnSubmit').removeClass("disabled");
+
+
+        $('.selectMonth').empty();
+        $('.selectYear').empty();
+
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var month = (new Date()).getMonth();
+        var year = (new Date()).getFullYear();
+
+
+        for (; month < monthNames.length; month++) {
+            $('.selectMonth').append('<option value="' + (month+1) + '">' + monthNames[month] + '</option>');
+        }
+
+
+        var maxYear = 2030;
+
+        for (; year < maxYear; year++) {
+            $('.selectYear').append('<option value="' + year + '">' + year + '</option>');
+        }
+
+
+
+
+    
+
+
+
+    }
+
+    function Submit() {
+
+        wLoading.showPleaseWait();
+        var data = {};
+
+        var cardNo = $('.txtCardNumber1').val() + $('.txtCardNumber2').val() + $('.txtCardNumber3').val() + $('.txtCardNumber4').val()
+        data.CardNumber = cardNo;
+        data.HolderName = $('.txtHolderName').val();
+        data.CTypeCode = $('.selectCardType').val();
+        data.ExpireDate = $('.selectMonth').val() + $('.selectYear').val();
+        data.CVV = $('.txtCVV').val();
+       
+        $.ajax({
+            type: "Post",
+            data: data,
+            url: paymentAPI + '/Submit',
+            contentType: "application/x-www-form-urlencoded",
+            success: function (data) {
+                var result = "";
+                $.each(data, function (i, item) {
+                    result += "- "+item.StatusText + "<br>";
+                    
+                });
+
+                $(".alert").removeClass("alert-success").removeClass("alert-danger");
+                setTimeout(function () { wLoading.hidePleaseWait() }, 1000);
+               if(result=="")
+               {
+                   $(".alert").addClass("alert-success");
+                   $(".alert").find('span').html("Payment Successfully!");
+                   $(".alert").fadeIn();
+                   $('.lberror').html('');
+                   
+               }
+               else {
+                   $(".alert").addClass("alert-danger");
+                   $(".alert").find('span').html(result);
+                   $(".alert").fadeIn();
+               }
+              
+
+
+              
+            },
+
+            failure: function (data) {
+                alert(data.responseText);
+                setTimeout(function () { wLoading.hidePleaseWait() }, 1000);
+            },
+            error: function (data) {
+                alert(data.responseText);
+                setTimeout(function () { wLoading.hidePleaseWait() }, 1000);
+            }
+
+        });
+
+        return false;
+
+    }
+
+
+
+    </script>  
+
+    <style>
+        .error {
+
+            color:red;
+        }
+
+        .modal-open .modal {
+    overflow-x: hidden;
+    max-height: 200px;
+}
+
+
+
+        .alert{
+    position:absolute;
+    z-index:1400;
+   top:20%;
+    right:10%;
+    margin:0px auto;
+	text-align:left;
+    display:none;
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+        Test Payment Submit VIA Mr.Piyaphon API
+    </div>   <!--en dof panel-heading -->
+    <div class="panel-body">
+    
+
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <form   class="form-horizontal span6 myform">
+                        <fieldset>
+                            <legend>Payment</legend>
+
+
+                            <div class="control-group">
+                                <label class="control-label">Card Type</label>
+                                <div class="controls">
+                                    <div class="row-fluid">
+                                        <div class="span9">
+                                            <select class="input-block-level selectCardType">
+                                                <option value="">**Select**</option>
+                                                <option value="VISA">Visa Card</option>
+                                                <option value="MASTER">Master Card</option>
+                                                <option value="AMEX">AMEX</option>
+                                                <option value="JCB">JCB</option>
+                                            </select>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="control-group">
+                                <label class="control-label">Card Holder's Name</label>
+                                <div class="controls">
+                                    <input type="text" class="input-block-level txtHolderName" pattern="\w+ \w+.*" title="Fill your first and last name" required>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Card Number</label>
+                                <div class="controls">
+                                    <div class="row-fluid">
+                                        <div class="span3">
+                                            <input type="text" class="input-block-level txtCardNumber1" autocomplete="off" maxlength="4"  required>
+                                        </div>
+                                        <div class="span3">
+                                            <input type="text" class="input-block-level txtCardNumber2" autocomplete="off" maxlength="4"   required>
+                                        </div>
+                                      <!-- <div class="span3">
+                                            <input type="text" class="input-block-level txtCardNumber3" autocomplete="off" maxlength="0" pattern="\d{4}" title="Third four digits" required>
+                                        </div>--> 
+                                        <div class="span3">
+                                            <input type="text" class="input-block-level txtCardNumber3" autocomplete="off"  maxlength="4"  required>
+                                        </div>
+                                  
+                                        <div class="span3">
+                                            <input type="text" class="input-block-level txtCardNumber4" autocomplete="off" maxlength="4"   required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="control-label">invalidCard </label>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Card Expiry Date</label>
+                                <div class="controls">
+                                    <div class="row-fluid">
+                                        <div class="span9">
+                                            <select class="input-block-level selectMonth">
+                                                <option value="1">January</option>
+                                                <option alue="2">...</option>
+                                                <option>December</option>
+                                            </select>
+                                        </div>
+                                        <div class="span3">
+                                            <select class="input-block-level selectYear">
+                                                <option>2013</option>
+                                                <option>...</option>
+                                                <option>2015</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Card CVV</label>
+                                <div class="controls">
+                                    <div class="row-fluid">
+                                        <div class="span3">
+                                            <input type="text" class="input-block-level txtCVV" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required>
+                                        </div>
+                                        <div class="span8">
+                                          <!-- screenshot may be here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                              
+                                <div class="controls">
+                                    <div class="row-fluid">
+                                        <div class="col-sm12">
+                                            <span class="error lberror"></span>
+                                            <!-- screenshot may be here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btnSubmit">Submit</button>
+                                <button type="button" class="btn">Cancel</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div> <!--end of Panel-body -->
+    </div> <!--end of Panel -->  
+
+
+
+   
+
+</body>
+
+<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <h1>Processing...</h1>
+    </div>
+    <div class="modal-body">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="alert alert-success" id="bsalert">
+    
+    <span></span>
+</div>
+
+</html>

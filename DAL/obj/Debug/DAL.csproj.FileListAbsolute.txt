@@ -1,0 +1,7 @@
+D:\Web\2C2P\API\DAL\bin\Debug\DAL.dll
+D:\Web\2C2P\API\DAL\bin\Debug\DAL.pdb
+D:\Web\2C2P\API\DAL\bin\Debug\DTO.dll
+D:\Web\2C2P\API\DAL\bin\Debug\DTO.pdb
+D:\Web\2C2P\API\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Web\2C2P\API\DAL\obj\Debug\DAL.dll
+D:\Web\2C2P\API\DAL\obj\Debug\DAL.pdb
