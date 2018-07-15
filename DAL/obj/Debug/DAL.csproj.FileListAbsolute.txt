@@ -5,3 +5,10 @@ D:\Web\2C2P\API\DAL\bin\Debug\DTO.pdb
 D:\Web\2C2P\API\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\Web\2C2P\API\DAL\obj\Debug\DAL.dll
 D:\Web\2C2P\API\DAL\obj\Debug\DAL.pdb
+E:\Github\PaymentAPI\DAL\bin\Debug\DAL.dll
+E:\Github\PaymentAPI\DAL\bin\Debug\DAL.pdb
+E:\Github\PaymentAPI\DAL\bin\Debug\DTO.dll
+E:\Github\PaymentAPI\DAL\bin\Debug\DTO.pdb
+E:\Github\PaymentAPI\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+E:\Github\PaymentAPI\DAL\obj\Debug\DAL.dll
+E:\Github\PaymentAPI\DAL\obj\Debug\DAL.pdb

@@ -7,3 +7,12 @@ D:\Web\2C2P\API\BAL\bin\Debug\DAL.pdb
 D:\Web\2C2P\API\BAL\bin\Debug\DTO.pdb
 D:\Web\2C2P\API\BAL\obj\Debug\BAL.dll
 D:\Web\2C2P\API\BAL\obj\Debug\BAL.pdb
+E:\Github\PaymentAPI\BAL\bin\Debug\BAL.dll
+E:\Github\PaymentAPI\BAL\bin\Debug\BAL.pdb
+E:\Github\PaymentAPI\BAL\bin\Debug\DAL.dll
+E:\Github\PaymentAPI\BAL\bin\Debug\DTO.dll
+E:\Github\PaymentAPI\BAL\bin\Debug\DAL.pdb
+E:\Github\PaymentAPI\BAL\bin\Debug\DTO.pdb
+E:\Github\PaymentAPI\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+E:\Github\PaymentAPI\BAL\obj\Debug\BAL.dll
+E:\Github\PaymentAPI\BAL\obj\Debug\BAL.pdb
